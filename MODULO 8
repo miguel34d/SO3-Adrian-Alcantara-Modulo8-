@@ -89,16 +89,24 @@ docker --version
 
 # 2. Instalar Docker Compose V2
 sudo mkdir -p /usr/lib/docker/cli-plugins
+
+#Agregar repositorio
 sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
-  -o /usr.lib/docker/cli-plugins/docker-compose
-sudo chmod +x /usr.lib/docker/cli-plugins/docker-compose
+  -o /usr/lib/docker/cli-plugins/docker-compose
+
+# Dar permisos de ejecución
+sudo chmod +x /usr/lib/docker/cli-plugins/docker-compose
+
+# Verificar versión
+docker compose version
+
 docker compose version
 
 # 3. Crear proyecto WordPress
 mkdir wordpress-docker && cd wordpress-docker
 nano docker-compose.yml
 
-# Contenido del archivo docker-compose.yml:
+---------------------# Contenido del archivo docker-compose.yml: #--------------------------------------
 version: '3.8'
 
 services:
@@ -131,9 +139,9 @@ services:
 volumes:
   db_data:
   wordpress_data:
-
+-------------------------------------------------------------------------------------
 # 4. Levantar WordPress
-docker compose up -d
+sudo docker compose up -d
 
 # 4.1 Listar contenedores Docker
 sudo docker ps -a
