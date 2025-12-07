@@ -68,7 +68,7 @@ sudo docker ps -a
 
 #CREAR UNA CONTENEDOR EN PORTAINER 
 IMAGEN
-httpd:lasted 
+httpd:lastet
 CONTENEDOR 
 /usr/local/apache2/htdocs
 HOST 
