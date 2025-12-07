@@ -1,6 +1,10 @@
-COMANDOS UTILIZADOS EN EL MODULO 8 
+################################################################################
+#                        COMANDOS UTILIZADOS EN EL MODULO 8                   #
+################################################################################
 
-PRACTICA 1 
+########################################
+#               PRACTICA 1            #
+########################################
 
 # 1. Actualizar paquetes
 sudo apt update -y
@@ -26,32 +30,55 @@ sudo docker pull nginx:latest
 # 7. Crear contenedor con puerto 8888 -> 80 y volumen persistente
 sudo docker run -d --name nginx -p 8888:80 -v /home/website:/usr/share/nginx/html nginx
 
+# 7.1 Listar contenedores Docker
+sudo docker ps -a
+
+# 7.2 Detener contenedor NGINX
+sudo docker stop nginx
+
 # 8. Mensaje final
-echo "Abre en tu navegador http://127.0.0.1:8888"
+http://127.0.0.1:8888"
 
-
-PRACTICA 2
+########################################
+#               PRACTICA 2            #
+########################################
 
 # 1. Descargar imagen de Portainer desde DockerHub
 sudo docker pull portainer/portainer-ce:latest
 
 # 2. Crear el contenedor de Portainer mapeando todos los puertos importantes
-docker volume create portainer_data
-docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:lts
+sudo docker volume create portainer_data
+sudo docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v portainer_data:/data portainer/portainer-ce:lts
+
+# URL: https://IP_DE_LA_MAQUINA:9443
 
 # 3. (Dentro de Portainer) 
-Get Started - -  Environmedt - SELECCIONAR (Docker Standalone) 
-Copiar el Linux & Windows WSL Y Pegarlo en el Linux 
-EN EVOLMENT ADDRESS PONER LA IP DE LA MAQUINA 
-Connect
+# Get Started -> Environment -> SELECCIONAR (Docker Standalone)
+# Copiar el Linux & Windows WSL y pegarlo en Linux
+# EN ENVIRONMENT ADDRESS PONER LA IP DE LA MAQUINA 
+# Connect
 
 # 4. Detener el contenedor NGINX desde Portainer
 # Esto se hace en la interfaz: Containers > mi_nginx > Stop
 
-# 5. Verificar desde consola que está detenido (opcional)
+# 5. Verificar desde consola que está detenido
+sudo docker ps -a
+
+#CREAR UNA CONTENEDOR EN PORTAINER 
+IMAGEN
+httpd:lasted 
+CONTENEDOR 
+/usr/local/apache2/htdocs
+HOST 
+/home/website #DONDE ESTA EL INDEX.html
 
 
-PRACTICA 3 
+
+########################################
+#               PRACTICA 3            #
+########################################
 
 # Requisitos previos: usuario con sudo + Internet
 
@@ -62,7 +89,8 @@ docker --version
 
 # 2. Instalar Docker Compose V2
 sudo mkdir -p /usr/lib/docker/cli-plugins
-sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o /usr.lib/docker/cli-plugins/docker-compose
+sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
+  -o /usr.lib/docker/cli-plugins/docker-compose
 sudo chmod +x /usr.lib/docker/cli-plugins/docker-compose
 docker compose version
 
@@ -107,6 +135,11 @@ volumes:
 # 4. Levantar WordPress
 docker compose up -d
 
-# 5. Acceder
-# http://localhost:8080
+# 4.1 Listar contenedores Docker
+sudo docker ps -a
 
+# 4.2 Detener contenedores si es necesario
+sudo docker stop wordpress_app wordpress_db
+
+# 5. Acceder a WordPress
+# http://localhost:8080
