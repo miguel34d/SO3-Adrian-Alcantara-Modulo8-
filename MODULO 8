@@ -110,12 +110,3 @@ docker compose up -d
 # 5. Acceder
 # http://localhost:8080
 
-
-
-
-# 1. Actualizar paquetes
-
-```bash
-sudo apt update
-sudo apt upgrade -y
-```
